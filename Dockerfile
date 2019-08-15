@@ -8,9 +8,9 @@ RUN cpan -i Log::Log4perl
 RUN mkdir -p /data
 WORKDIR /data
 
-COPY edunum-scrapper.py /usr/bin/scrapper
-RUN chmod +x /usr/bin/scrapper
+COPY edunum-scraper.py /usr/bin/scraper
+RUN chmod +x /usr/bin/scraper
 COPY favicon.png .
 COPY fonts fonts
 
-CMD scrapper
+CMD scraper

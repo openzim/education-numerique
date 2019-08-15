@@ -5,6 +5,7 @@
 converts raw E&N folder (from OF) into a zimwriterfs friendly one. """
 
 import os
+import sys
 import json
 import shutil
 import zipfile
@@ -13,8 +14,14 @@ import logging
 import argparse
 import subprocess
 
+NAME = os.path.basename(__file__)
+VERSION = "1.0"
+
 logging.basicConfig(format="%(levelname)s:%(message)s")
 logger = logging.getLogger("edunum-scrapper")
+
+if sys.version_info < (3, 6):
+    raise RuntimeError("This tool requires Python 3.6+")
 
 
 def get_content_of(fpath):
@@ -262,7 +269,7 @@ def gen_activities_html(root):
         '<title dir="ltr">__TITLE__</title>',
     )
     template = template.replace(
-        'var actjson = "" + location.search.substr(1).split(/\?/);',
+        r'var actjson = "" + location.search.substr(1).split(/\?/);',
         'var actjson = "id=__ACT_ID__";',
     )
 
@@ -405,15 +412,28 @@ def create_zim(root, outputdir, zimfname):
     """ runs zimwriterfs """
     args = [
         "zimwriterfs",
-        "--welcome=index.html",
-        "--favicon=I-favicon.png",
-        "--language=fra",
-        '--title="Éducation et Numérique"',
-        '--description="Catalogue de ressources pédagogiques intéractives"',
-        '--creator="Éducation & Numérique"',
-        '--publisher="Kiwix"',
+        "--welcome",
+        "index.html",
+        "--favicon",
+        "I-favicon.png",
+        "--language",
+        "fra",
+        "--title",
+        "Éducation et Numérique",
+        "--description",
+        "Des activités dans toutes les matières, du primaire au lycée",
+        "--creator",
+        "Éducation & Numérique",
+        "--publisher",
+        "Kiwix",
         "--verbose",
-        '--name="education-et-numerique_fr"',
+        "--name",
+        "education-et-numerique_fr_all",
+        "--withFullTextIndex",
+        "--tags",
+        "education-numerique",
+        "--scraper",
+        f"{NAME}-{VERSION}",
         root,
         os.path.join(outputdir, zimfname),
     ]
@@ -505,7 +525,7 @@ def main():
     parser.add_argument(
         "--zimfname",
         help="Filename to save ZIM file into",
-        default="education-et-numerique_fr_2014-12.zim",
+        default="education-et-numerique_fr_all_2014-12.zim",
     )
     parser.add_argument(
         "--debug", help="Enable verbose output", action="store_true", default=False
