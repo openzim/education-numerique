@@ -8,7 +8,16 @@ Content from [Éducation & Numérique](https://www.education-et-numerique.org/),
 ```
 docker run -v `pwd`:/output:rw openzim/education-numerique
 ```
+
+or
+
 ```
 docker run -v /tmp:/tmp:rw openzim/education-numerique scraper --help
 docker run -v /tmp:/tmp:rw openzim/education-numerique scraper --debug --outputdir /tmp --zimfname my-super-file.zim
 ```
+
+License
+-------
+
+[GPLv3](https://www.gnu.org/licenses/gpl-3.0) or later, see
+[LICENSE](LICENSE) for more details.
