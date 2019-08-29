@@ -1,17 +1,21 @@
-Éducation & Numérique scraper
-===
+# Éducation & Numérique scraper
 
 Content from [Éducation & Numérique](https://www.education-et-numerique.org/), under **CC-by-nc-sa** using a 2014 dump of the software+content.
 
-# Usage
+[![Docker Build Status](https://img.shields.io/docker/build/openzim/education-numerique)](https://hub.docker.com/r/openzim/education-numerique)
+[![CodeFactor](https://www.codefactor.io/repository/github/openzim/education-numerique/badge)](https://www.codefactor.io/repository/github/openzim/education-numerique)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-```
+Usage
+-----
+
+```bash
 docker run -v `pwd`:/output:rw openzim/education-numerique
 ```
 
 or
 
-```
+```bash
 docker run -v /tmp:/tmp:rw openzim/education-numerique scraper --help
 docker run -v /tmp:/tmp:rw openzim/education-numerique scraper --debug --outputdir /tmp --zimfname my-super-file.zim
 ```
