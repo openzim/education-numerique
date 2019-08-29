@@ -1,7 +1,7 @@
-FROM openzim/zimwriterfs:latest
+FROM openzim/zimwriterfs:1.3.5
 
 RUN apt-get update -y
-RUN apt-get install -y aria2 python3 pngquant jpegoptim imagemagick 
+RUN apt-get install -y aria2 python3 pngquant jpegoptim imagemagick
 RUN cpan -i MIME::Types
 RUN cpan -i Log::Log4perl
 
