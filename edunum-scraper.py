@@ -15,7 +15,7 @@ import argparse
 import subprocess
 
 NAME = os.path.basename(__file__)
-VERSION = "1.0"
+VERSION = "1.0.1"
 
 logging.basicConfig(format="%(levelname)s:%(message)s")
 logger = logging.getLogger("edunum-scrapper")
