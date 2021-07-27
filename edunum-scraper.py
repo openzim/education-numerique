@@ -394,7 +394,8 @@ def download_file(output_dir, url, fname, checksum):
         logger.info("  sum MISMATCHES.")
         os.unlink(fpath)
 
-    aria2c = subprocess.run(["aria2c", f"--dir={output_dir}", f"--out={fname}", url])
+    aria2c = subprocess.run(["aria2c", f"--dir={output_dir}", "--follow-metalink=true",
+                             "--continue", f"--out={fname}", url])
     aria2c.check_returncode()
     return fpath
 
@@ -405,7 +406,9 @@ def extract_archive(archive_fpath, working_dir):
     with zipfile.ZipFile(archive_fpath, "r") as zip_archive:
         zip_archive.extractall(working_dir)
     # remove extra folder from zip file
-    shutil.rmtree(os.path.join(working_dir, "__MACOSX"))
+    exta_dir = os.path.join(working_dir, "__MACOSX")
+    if os.path.exists(exta_dir):
+        shutil.rmtree(os.path.join(working_dir, "__MACOSX"))
 
 
 def create_zim(root, outputdir, zimfname):
