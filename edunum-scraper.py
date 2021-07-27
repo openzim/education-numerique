@@ -179,7 +179,7 @@ def fix_scorm_html(root):
 
     content = content.replace(
         "setupTemplate('activity.tpl')",
-        "setupTemplate('../../A/activity/activity.tpl')",
+        "setupTemplate('../../I/activity/activity.tpl')",
     )
 
     save_content_to(content, fpath)
@@ -328,8 +328,8 @@ def gen_activities_html(root):
         content = content.replace(
             "<header>",
             '<nav id="home" style="padding: .5em;">'
-            '<a href="../../index.html">'
-            '<img src="../web/img/LogoE&N.png" '
+            '<a href="../../">'
+            '<img src="../../I/web/img/LogoE&N.png" '
             'title="Retour à l\'accueil" '
             'style="height: 2em;" /></a>'
             "</nav>\n\n  <header>",
@@ -525,7 +525,7 @@ def main():
     parser.add_argument(
         "--zimfname",
         help="Filename to save ZIM file into",
-        default="education-et-numerique_fr_all_2014-12.zim",
+        default="education-et-numerique_fr_all_2015-01.zim",
     )
     parser.add_argument(
         "--debug", help="Enable verbose output", action="store_true", default=False
